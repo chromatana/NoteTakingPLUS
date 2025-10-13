@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Note Taker Plus (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Note Taker Plus (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
