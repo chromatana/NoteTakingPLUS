@@ -14,6 +14,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 
 using Note_Taker_Plus.Models;
+using System.Runtime.CompilerServices;
 
 namespace Note_Taker_Plus.Views
 {
@@ -27,6 +28,16 @@ namespace Note_Taker_Plus.Views
         public AllNotesPage()
         {
             InitializeComponent();
+        }
+
+        private void NewNoteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(NotePage));
+        }
+
+        private void ItemsView_ItemInvoked(ItemsView sender, ItemsViewItemInvokedEventArgs args)
+        {
+            Frame.Navigate(typeof(NotePage), args.InvokedItem);
         }
     }
 }

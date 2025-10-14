@@ -30,5 +30,13 @@ namespace Note_Taker_Plus
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
         }
+
+        private void AppTitleBar_BackRequested(TitleBar sender, object args)
+        {
+            if (rootFrame.CanGoBack == true)
+            {
+                rootFrame.GoBack();
+            }
+        }
     }
 }

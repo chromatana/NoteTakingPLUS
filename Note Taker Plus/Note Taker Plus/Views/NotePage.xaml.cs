@@ -28,6 +28,20 @@ public sealed partial class NotePage : Page
         InitializeComponent();
     }
 
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        if (e.Parameter is Note note)
+        {
+            noteModel = note;
+        }
+        else
+        {
+            noteModel = new Note();
+        }
+    }
+
     private async void SaveButton_Click(object sender, RoutedEventArgs e)
     {
         if (noteModel is not null)
@@ -41,6 +55,11 @@ public sealed partial class NotePage : Page
         if (noteModel is not null)
         {
             await noteModel.DeleteAsync();
+        }
+
+        if (Frame.CanGoBack == true)
+        {
+            Frame.GoBack();
         }
     }
 }
