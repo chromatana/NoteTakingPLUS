@@ -9,9 +9,26 @@
     mc:Ignorable="d"
     Title="Note Taker Plus">
 
-    
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="Base"/>
+    </Window.SystemBackdrop>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <!-- Title Bar -->
+            <RowDefinition Height="Auto" />
+            <!-- App Content -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TitleBar x:Name="AppTitleBar"
+              Title="Note Taker Plus Build 0.0.0">
+            <TitleBar.IconSource>
+                <FontIconSource Glyph="&#xF4AA;"/>
+            </TitleBar.IconSource>
+        </TitleBar>
 
+        <!-- App content -->
+        <Frame x:Name="rootFrame" Grid.Row="1"
+               SourcePageType="local:NotePage"/>
     </Grid>
 </Window>
