@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/> 
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -32,8 +32,8 @@
                     HorizontalAlignment="Right"
                     Spacing="4"
                     Grid.Row="1" Grid.Column="1">
-            <Button Content="Save" Style="{StaticResource AccentButtonStyle}"/>
-            <Button Content="Delete"/>
+            <Button Content="Save" Style="{StaticResource AccentButtonStyle}" Click="SaveButton_Click"/>
+            <Button Content="Delete" Click="DeleteButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

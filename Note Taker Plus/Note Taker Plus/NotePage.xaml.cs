@@ -12,6 +12,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Windows.Storage;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,8 +25,41 @@ namespace Note_Taker_Plus;
 /// </summary>
 public sealed partial class NotePage : Page
 {
+    private StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+    private StorageFile? noteFile = null;
+    private string fileName = "note.txt";
+
     public NotePage()
     {
         InitializeComponent();
+        Loaded += NotePage_Loaded;
+    }
+
+    private async void NotePage_Loaded(object sender, RoutedEventArgs e)
+    {
+        noteFile = (StorageFile)await storageFolder.TryGetItemAsync(fileName);
+        if (noteFile != null)
+        {
+            NoteEditor.Text = await FileIO.ReadTextAsync(noteFile);
+        }
+    }
+
+    private async void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+       if (noteFile == null)
+        {
+            noteFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+        }
+       await FileIO.WriteTextAsync(noteFile, NoteEditor.Text);
+    }
+
+    private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (noteFile != null)
+        {
+            await noteFile.DeleteAsync();
+            noteFile = null;
+            NoteEditor.Text = string.Empty;
+        }
     }
 }
