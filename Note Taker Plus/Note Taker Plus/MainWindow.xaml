@@ -30,6 +30,6 @@
 
         <!-- App content -->
         <Frame x:Name="rootFrame" Grid.Row="1"
-               SourcePageType="views:AllNotePage"/>
+               SourcePageType="views:AllNotesPage"/>
     </Grid>
 </Window>
